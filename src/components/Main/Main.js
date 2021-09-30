@@ -3,8 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import ItemListContainter from '../ItemListContainer/ItemListContainter';
 
 const Main = () => {
-
-
+    
     return (
         <div>
             <Navbar/>

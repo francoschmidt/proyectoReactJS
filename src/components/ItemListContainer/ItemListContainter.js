@@ -6,9 +6,11 @@ import ItemList from '../ItemList/ItemList'
 import Loader from "react-loader-spinner";
 
 const ItemListContainter = ({nombreDelSitio}) => {
+    //stock y productos a comprar
     const [stock , setStock] = useState(10);
     const [initial, setInitial] = useState(1);
 
+    //simulo 2 seg de retraso en la carga
     let [loader, setLoader] = useState(true)
     setTimeout(() => {
         setLoader(loader=false)

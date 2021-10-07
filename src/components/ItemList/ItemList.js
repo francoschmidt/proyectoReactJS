@@ -64,6 +64,7 @@ const ItemList = () => {
 
     let [celular, setCelular] = useState([])
 
+    //cuando carga el dom hago una promesa que guarda el array de 'celulares' en'celular' y combruebo por consola
     useEffect(() => {
         let promesaCelulares = new Promise((response,reject)=>{
             if (celulares) {
@@ -76,7 +77,7 @@ const ItemList = () => {
                 .finally(console.log('Promesa finalizada'))
     }, [])
 
-
+    //creo dinamicamente y muestro los celulares
     return (
         <div style={{display:'flex'}}>
             {celular.map(cadaCelular =>          

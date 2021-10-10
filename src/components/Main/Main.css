@@ -1,0 +1,6 @@
+#loaderContainer{
+    display:flex;
+    justify-content:center;
+    height:250px; 
+    align-items:center
+}

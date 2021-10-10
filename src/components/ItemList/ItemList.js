@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import './ItemList.css'
 
 import SamsungGalaxyS20 from '../../images/Samsung Galaxy S20.jpg'
 import SamsungGalaxyS10 from '../../images/Samsung Galaxy S10.jpg'
@@ -62,28 +62,13 @@ const ItemList = () => {
         },
     ]
 
-    let [celular, setCelular] = useState([])
-
-    //cuando carga el dom hago una promesa que guarda el array de 'celulares' en'celular' y combruebo por consola
-    useEffect(() => {
-        let promesaCelulares = new Promise((response,reject)=>{
-            if (celulares) {
-                response(setCelular(celular = celulares))
-            }else reject('Hubo un error de la promesa al traer los celulares')
-            })
-            promesaCelulares
-                .then(console.log('Funcionó. Ahora la variable celular contiene el array de celulares.'))
-                .catch((err)=>{console.log(err)})
-                .finally(console.log('Promesa finalizada'))
-    }, [])
-
     //creo dinamicamente y muestro los celulares
     return (
         <div style={{display:'flex'}}>
-            {celular.map(cadaCelular =>          
+            {celulares.map(cadaCelular =>          
                 <div key={cadaCelular.title} className="card" style={{width:'18em'}}>
                     <img key={cadaCelular.pictureURL} src={cadaCelular.pictureURL} className="card-img-top" alt="..."/>
-                    <div className="card-body">
+                    <div className="card-body d-flex row" id='contenedorCards' style={{alignContent:'end'}}>
                         <h5 key={cadaCelular.title} className="card-title">{cadaCelular.title}</h5>
                         <p key={cadaCelular.price} className="card-text">${cadaCelular.price}</p>
                         <button className="btn btn-primary">Agregar al carrito</button>

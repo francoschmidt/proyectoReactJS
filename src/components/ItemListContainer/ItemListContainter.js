@@ -1,34 +1,21 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFireAlt } from '@fortawesome/free-solid-svg-icons'
+import { faFlask } from '@fortawesome/free-solid-svg-icons'
 import './ItemListContainer.css'
 import ItemList from '../ItemList/ItemList'
-import Loader from "react-loader-spinner";
+import ItemCount from '../ItemCount/ItemCount'
 
 const ItemListContainter = ({nombreDelSitio}) => {
     //stock y productos a comprar
     const [stock , setStock] = useState(10);
     const [initial, setInitial] = useState(1);
 
-    //simulo 2 seg de retraso en la carga
-    let [loader, setLoader] = useState(true)
-    setTimeout(() => {
-        setLoader(loader=false)
-    }, 2000);
 
     return (
         <div>
-            <h1 id='bienvenido'>Bienvenid@ a {nombreDelSitio} <FontAwesomeIcon icon={faFireAlt} color='aqua'/></h1>
+            <h1 id='bienvenido'>Bienvenid@ a {nombreDelSitio} <FontAwesomeIcon icon={faFlask} color='greenyellow'/></h1>
             {/* <ItemCount stock={stock} setStock={setStock} initial={initial} setInitial={setInitial}/> */}
-            {loader
-            ?
-            <div id='loaderContainer'>
-                <Loader color='aqua' type='Oval'/>
-            </div>
-            :
-            <ItemList/>
-            }
-            
+            {/* <ItemList/> */}
         </div>
     )
 }

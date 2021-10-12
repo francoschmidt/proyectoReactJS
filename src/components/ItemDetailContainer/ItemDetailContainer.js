@@ -2,11 +2,8 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import AllItemDetails from '../AllItemDetails/AllItemDetails'
-import { useHistory } from 'react-router'
 
 const ItemDetailContainer = () => {
-
-    let history = useHistory();
     
     //aca guardo el array de todos los personajes
     let [personajes, setPersonajes] = useState([])

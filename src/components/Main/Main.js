@@ -12,7 +12,7 @@ const Main = () => {
 
     return (
         <BrowserRouter>
-            <Navbar/>
+            <Navbar nombreDelSitio={nombreDelSitio} />
             <Switch>
                 <Route exact path='/'>
                     <Home nombreDelSitio={nombreDelSitio}/>

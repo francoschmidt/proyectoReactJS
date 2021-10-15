@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react'
 
 const ItemCount = ({stock, setStock, initial, setInitial}) => {
@@ -33,16 +34,7 @@ const ItemCount = ({stock, setStock, initial, setInitial}) => {
             setproductosEnCarrito(productosEnCarrito = productosEnCarrito + initial)
         }
     }
-
-    // useEffect(() => {
-    //     console.log('app mounted')
-    //     return () => {
-    //         console.log('app will unmount (2)')
-    //     }
-    // }, [stock])
-
-    // console.log('will render')
-
+    
     return (
         <div className="card text-dark mb-3 bg-light" style={{maxWidth: 18 + 'em'}}>
             <div className="card-header text-center">Producto ({stock} disponibles en stock)</div>

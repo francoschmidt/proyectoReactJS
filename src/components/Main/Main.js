@@ -4,33 +4,24 @@ import ItemListContainter from '../ItemListContainer/ItemListContainter';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 import Footer from '../Footer/Footer';
-// import Loader from 'react-loader-spinner';
 import Home from '../Home/Home';
-import '../Main/Main.css'
 
 const Main = () => {
-    let nombreDelSitio = 'Breaking Bad Store'
 
-    let [loader, setLoader] = useState (true);
-
-    setTimeout(() => {
-        setLoader(loader = false)
-    }, 2000);
+    let nombreDelSitio = 'Schmidt Store'
 
     return (
         <BrowserRouter>
             <Navbar/>
             <Switch>
                 <Route exact path='/'>
+                    <Home nombreDelSitio={nombreDelSitio}/>
+                    <ItemListContainter />
+                    {/* <Home nombreDelSitio={nombreDelSitio}/> 
                     <ItemListContainter/>
-                    <Home nombreDelSitio={nombreDelSitio}/> 
-                    {/* {loader?
-                    <div id='loaderContainer'>
-                        <Loader color={'greenyellow'} type={'Puff'}/>
-                    </div>
-                    : */}
-                    <ItemDetailContainer loader={loader} setLoader={setLoader} />
-                    {/* } */}
+                    {/* <ItemDetailContainer */}
+                </Route>
+                <Route exact path='/prueba'>
                 </Route>
             </Switch>
             <Footer/>

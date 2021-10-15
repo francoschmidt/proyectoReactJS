@@ -10,6 +10,7 @@ const ItemListContainter = ({nombreDelSitio}) => {
     const [stock , setStock] = useState(10);
     const [initial, setInitial] = useState(1);
 
+    let [celular, setCelular] = useState([])
     
     return (
         <div>

@@ -9,7 +9,7 @@ const AllItemDetails = ({personajes}) => {
                 <div className="card-body d-flex row" id='contenedorCards' style={{alignContent:'end'}}>
                     <h5 key={cadaPersonaje.name} className="card-title">{cadaPersonaje.name}</h5>
                     <button className="btn btn-primary">Agregar al carrito</button>
-                </div>
+                </div> 
             </div>)}
         </div>
     )

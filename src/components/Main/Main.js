@@ -10,16 +10,16 @@ const Main = () => {
 
     let nombreDelSitio = 'Schmidt Store'
 
+    let [celular, setCelular] = useState([])
+
     return (
         <BrowserRouter>
             <Navbar nombreDelSitio={nombreDelSitio} />
             <Switch>
                 <Route exact path='/'>
                     <Home nombreDelSitio={nombreDelSitio}/>
-                    <ItemListContainter />
-                    {/* <Home nombreDelSitio={nombreDelSitio}/> 
-                    <ItemListContainter/>
-                    {/* <ItemDetailContainer */}
+                    <ItemListContainter celular={celular} setCelular={setCelular} />
+                    {/* <ItemDetailContainer celular={celular} setCelular={setCelular} /> */}
                 </Route>
                 <Route exact path='/prueba'>
                 </Route>

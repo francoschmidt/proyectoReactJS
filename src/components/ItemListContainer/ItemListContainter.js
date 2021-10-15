@@ -4,12 +4,10 @@ import ItemList from '../ItemList/ItemList'
 // import Loader from "react-loader-spinner";
 import ItemCount from '../ItemCount/ItemCount'
 
-const ItemListContainter = () => {
+const ItemListContainter = ({celular, setCelular}) => {
     //stock y productos a comprar
     const [stock , setStock] = useState(10);
     const [initial, setInitial] = useState(1);
-
-    let [celular, setCelular] = useState([])
     
     return (
         <div>

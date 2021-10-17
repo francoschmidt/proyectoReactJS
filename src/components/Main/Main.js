@@ -10,7 +10,7 @@ const Main = () => {
 
     let nombreDelSitio = 'Schmidt Store'
 
-    let [celular, setCelular] = useState([])
+    const [allCellph, setAllCellph] = useState([])
 
     return (
         <BrowserRouter>
@@ -18,10 +18,15 @@ const Main = () => {
             <Switch>
                 <Route exact path='/'>
                     <Home nombreDelSitio={nombreDelSitio}/>
-                    <ItemListContainter celular={celular} setCelular={setCelular} />
-                    {/* <ItemDetailContainer celular={celular} setCelular={setCelular} /> */}
+                    <ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} />
+                    {/* <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} /> */}
                 </Route>
-                <Route exact path='/prueba'>
+                <Route exact path='/marca/:id'>
+                    <ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} />
+                </Route>
+                <Route exact path='/item/:id'>
+                    <div style={{display:'none'}}><ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} /></div>
+                    <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} />
                 </Route>
             </Switch>
             <Footer/>

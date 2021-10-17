@@ -1,36 +1,31 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+import React from 'react'
+import Loader from 'react-loader-spinner'
+import { useParams } from 'react-router'
 import ItemDetail from '../ItemDetail/ItemDetail'
-import AllItemDetails from '../AllItemDetails/AllItemDetails'
+import './ItemDetailContainer.css'
 
-const ItemDetailContainer = () => {
-    
-    //aca guardo el array de todos los personajes
-    let [personajes, setPersonajes] = useState([])
-    //aca guardo el array con los datos de WW
-    let [walterWhite, setWalterWhite] = useState([])
+const ItemDetailContainer = ({allCellph}) => {
 
+    //recibo el id por parametro proveniente de la url
+    let {id} = useParams()
 
-    //obtengo los datos de la api y mando los datos de WW al array
-    const getPersonajes = async () => {
-        try {
-            const respuesta = await axios.get('https://www.breakingbadapi.com/api/characters')
-            setPersonajes(personajes = respuesta.data)
-            setWalterWhite(walterWhite = personajes[0])
-        } catch (error) {
-            console.log(error)
-        }
+    let productoFiltrado;
+    //si el array de los celulares ya cargó los productos, filtro el producto que tenga el mismo id 
+    if(allCellph.length){
+        productoFiltrado = allCellph.find(producto => producto.titleLink === id)
     }
-
-    //ejecuto la funcion para obtener datos api
-    useEffect(() => {
-        getPersonajes();
-    }, [])
 
     return (
         <div>
-            <ItemDetail walterWhite={walterWhite} />
-            <AllItemDetails personajes={personajes} />
+            {!productoFiltrado
+            ?
+            <div id='containerLoader' style={{display:'flex', flexDirection:'column'}} >
+                <Loader type={'Puff'} color={'aqua'} />
+                <h3 style={{fontFamily:'serif'}} >Cargando producto...</h3>
+            </div>
+            :
+            <ItemDetail productoFiltrado={productoFiltrado}/>
+            }
         </div>
     )
 }

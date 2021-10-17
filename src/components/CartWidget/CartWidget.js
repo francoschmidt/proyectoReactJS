@@ -8,7 +8,7 @@ const CartWidget = () => {
     return (
         <div id='contenedorCartWidget'>
             <FontAwesomeIcon icon={faShoppingCart}/>
-            <span>0</span>
+            <h6>0</h6>
         </div>
         
     )

@@ -1,4 +1,6 @@
 #contenedorCartWidget{
+    display: flex;
+    flex-direction: row;
     cursor: pointer;
     color: aqua;
 }

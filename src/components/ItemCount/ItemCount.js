@@ -18,15 +18,12 @@ const ItemCount = ({initial, setInitial, stock}) => {
         }
     }
 
-    //EXPORTAR ESTO AL SPAN QUE DICE 0, PONER EL VALOR DE PRODUCTOSENCARRITO
-    let [productosEnCarrito, setProductosEnCarrito] = useState(0);
 
     //muestro mensajes y seteo el stockActualizado y carrito dsp de agregar productos
     function actualizarStock(){
         if (initial <= stockActualizado){
             alert('Agregado al carrito exitosamente');
             setStockActualizado(stockActualizado = stockActualizado-initial);
-            setProductosEnCarrito(productosEnCarrito = productosEnCarrito + initial)
         }
     }
     
@@ -35,7 +32,7 @@ const ItemCount = ({initial, setInitial, stock}) => {
             <div className="card-body">
                 <div className='d-flex justify-content-between bg-white' style={{border:'1px solid black', borderRadius:'5px'}}>
                     <button onClick={()=>onRemove()} id='botonSumarProducto' className='d-inline btn btn-light fs-3' style={{color:'blue'}}>-</button>
-                    <div id='productosEnCarrito' className='d-inline fs-1'>{initial}</div>
+                    <div className='d-inline fs-1'>{initial}</div>
                     <button onClick={()=>onAdd()} id='botonRestarProducto' className='d-inline btn btn-light fs-3' style={{color:'blue'}}>+</button>
                 </div>
                 <div className='d-flex justify-content-center'>

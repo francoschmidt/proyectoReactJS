@@ -30,7 +30,7 @@ const ItemListContainter = ({allCellph, setAllCellph}) => {
                     <div className="card-body d-flex flex-column justify-content-end">
                         <h5 className="card-title">{cadaCelu.title}</h5>
                         <p className="card-text">${cadaCelu.price}</p>
-                        <Link exact path to={`/item/${cadaCelu.titleLink}`}><button className="btn btn-primary">Ver detalles</button></Link>
+                        <Link to={`/item/${cadaCelu.titleLink}`}><button className="btn btn-primary">Ver detalles</button></Link>
                     </div>
                 </div>
                 )}

@@ -29,7 +29,7 @@ const Main = () => {
                     <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} />
                 </Route>
             </Switch>
-            <Footer/>
+            <Footer nombreDelSitio={nombreDelSitio} />
         </BrowserRouter>
     )
 }

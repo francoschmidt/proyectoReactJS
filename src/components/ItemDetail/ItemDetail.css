@@ -1,0 +1,8 @@
+#contenedorItemDetail{
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+}
+#botonCarrito{
+    border-radius: 50%;
+}

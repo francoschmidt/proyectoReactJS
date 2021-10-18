@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 
 const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) => {
 
@@ -49,7 +50,7 @@ const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) =
 
     return (
         <div className="text-dark mb-3" style={{width: '100%'}}>
-            <div className="card-body">
+            <div>
                 <div className='d-flex justify-content-between bg-white' style={{border:'1px solid black', borderRadius:'5px'}}>
                     <button 
                         onClick={()=>onRemove()} 
@@ -68,6 +69,7 @@ const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) =
                         disabled={initial > stockActualizado ? true:null} 
                         onClick={() => {actualizarStock();setearCompra();eliminarElemento('agregarAlCarrito')}} 
                         id='agregarAlCarrito' 
+                        style={{width:'100%'}}
                         className='mt-3 btn btn-primary agregar'>Agregar al carrito</button>
                 </div>
             </div>

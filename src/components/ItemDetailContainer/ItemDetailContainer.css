@@ -4,8 +4,3 @@
     height:250px; 
     align-items:center
 }
-#contenedorItemDetail{
-    margin: 2%;
-    display: flex;
-    justify-content: center;
-}

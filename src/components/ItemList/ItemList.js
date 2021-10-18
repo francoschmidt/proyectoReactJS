@@ -15,7 +15,7 @@ const ItemList = ({allCellph, setAllCellph}) => {
                 })
                 promesaCelulares
                     .then(console.log('Funcionó. Ahora la variable allCellph contiene el array de celulares.'))
-                    .catch((err)=>{console.log(err)})
+                    .catch((err) => console.log(err))
                     .finally(console.log('Promesa finalizada'))
         }, 2000);
     }, [])

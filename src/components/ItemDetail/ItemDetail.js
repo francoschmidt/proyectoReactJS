@@ -7,6 +7,9 @@ const ItemDetail = ({productoFiltrado}) => {
     //numeero que figura en el item detail
     const [initial, setInitial] = useState(1);
 
+    //creo estado para setear cantidad de productos que va a comprar el usuario
+    let [compra, setCompra] = useState()
+
     return (
         <div key={productoFiltrado.id} className="card col-4">
             <img src={productoFiltrado.pictureURL} className="card-img-top" alt="..."/>
@@ -18,7 +21,12 @@ const ItemDetail = ({productoFiltrado}) => {
                 <h5 className="fw-light card-title">•Cámara delantera: {productoFiltrado.cameras.front} </h5>
                 <h5 className="fw-light card-title">•Disponible en colores: {productoFiltrado.availableColors} </h5>
                 <h5 className="fw-light card-title">${productoFiltrado.price}</h5>
-                <ItemCount initial={initial} setInitial={setInitial} stock={productoFiltrado.stock} />
+                <ItemCount 
+                    initial={initial} 
+                    setInitial={setInitial} 
+                    productoFiltrado={productoFiltrado}
+                    compra={compra}
+                    setCompra={setCompra} />
             </div> 
         </div>
     )

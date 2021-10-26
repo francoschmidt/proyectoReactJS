@@ -5,7 +5,7 @@ import ItemDetail from '../ItemDetail/ItemDetail'
 import './ItemDetailContainer.css'
 
 const ItemDetailContainer = ({allCellph}) => {
-
+    
     //recibo el id por parametro proveniente de la url
     let {id} = useParams()
 

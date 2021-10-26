@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { CartContextProvider } from '../Contexts/CartContext'
 
 const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) => {
 
@@ -37,16 +38,12 @@ const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) =
         console.log(`va a comprar ${compra} productos`)
     }
 
-    //funcion para eliminar el boton de agregar al carrito que se va a ejecutar cuando se clickee en dicho boton
-    function eliminarElemento(id){
-	    let botonAgregarAlCarrito = document.getElementById(id);	
-	    if (!botonAgregarAlCarrito){
-    		alert("El elemento selecionado no existe");
-	    } else {
-		    let padre = botonAgregarAlCarrito.parentNode;
-		    padre.removeChild(botonAgregarAlCarrito);
-	    }
-    }
+    //obtengo el context de cantidad de items en carrito y hago destructuring
+    const cartContext = useContext(CartContextProvider)
+    let {addItem} = cartContext
+
+    //cuando pusheo a la variable que guarda los items a comprar, la cntidad de items es igual a initial
+    productoFiltrado.qty = initial;
 
     return (
         <div className="text-dark mb-3" style={{width: '100%'}}>
@@ -67,8 +64,10 @@ const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) =
                 <div className='d-flex justify-content-center'>
                     <button 
                         disabled={initial > stockActualizado ? true:null} 
-                        onClick={() => {actualizarStock();setearCompra();eliminarElemento('agregarAlCarrito')}} 
-                        id='agregarAlCarrito' 
+                        onClick={() => {actualizarStock();
+                                        setearCompra();
+                                        addItem(productoFiltrado.title, productoFiltrado.id, productoFiltrado.qty, productoFiltrado.price, productoFiltrado.price*productoFiltrado.qty, productoFiltrado.stock)}}
+                        id='agregarAlCarrito'
                         style={{width:'100%'}}
                         className='mt-3 btn btn-primary agregar'>Agregar al carrito</button>
                 </div>

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFireAlt } from '@fortawesome/free-solid-svg-icons'
 
 const Home = ({nombreDelSitio}) => {
+    
     return (
         <div id='homeContainer'>
             <h1 id='bienvenido'>Bienvenid@ a {nombreDelSitio} <FontAwesomeIcon icon={faFireAlt} color='aqua'/></h1>

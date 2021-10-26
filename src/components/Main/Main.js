@@ -5,14 +5,19 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
+import CartContext from '../Contexts/CartContext'
+import Cart from '../Cart/Cart';
 
 const Main = () => {
 
+    //defino nombre del sitio para pasarlo a todas las vistas donde lo muestro
     let nombreDelSitio = 'Schmidt Store'
 
-    const [allCellph, setAllCellph] = useState([])
+    //declaro el array allCellph para mandarle en el ItemList los objetos de celulares
+    const [allCellph, setAllCellph] = useState([]);
 
     return (
+        <CartContext>
         <BrowserRouter>
             <Navbar nombreDelSitio={nombreDelSitio} />
             <Switch>
@@ -28,9 +33,13 @@ const Main = () => {
                     <div style={{display:'none'}}><ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} /></div>
                     <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} />
                 </Route>
+                <Route exact path='/cart'>
+                    <Cart/>
+                </Route>
             </Switch>
             <Footer nombreDelSitio={nombreDelSitio} />
         </BrowserRouter>
+        </CartContext>
     )
 }
 

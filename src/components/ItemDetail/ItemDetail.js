@@ -13,7 +13,7 @@ const ItemDetail = ({productoFiltrado}) => {
 
     //creo estado para setear cantidad de productos que va a comprar el usuario
     let [compra, setCompra] = useState()
-
+    
     return (
         <>
             <div id='contenedorItemDetail'>
@@ -27,13 +27,15 @@ const ItemDetail = ({productoFiltrado}) => {
                         <h5 className="fw-light card-title">•Cámara delantera: {productoFiltrado.cameras.front} </h5>
                         <h5 className="fw-light card-title">•Disponible en colores: {productoFiltrado.availableColors} </h5>
                         <h5 className="text-center mt-1 fw-bold card-title">${productoFiltrado.price}</h5>
-                        <ItemCount 
+                        <ItemCount
                             initial={initial} 
                             setInitial={setInitial} 
                             productoFiltrado={productoFiltrado}
                             compra={compra}
                             setCompra={setCompra} />
-                        <Link to='/cart' id='contenedorIrAlCarrito' 
+                        <Link 
+                            to='/cart'
+                            id='contenedorIrAlCarrito' 
                             style={{display:'flex', justifyContent:'center'}}>
                             <button className='mt-3 btn btn-success' id='botonCarrito'>
                                 <FontAwesomeIcon icon={faShoppingCart} color='white'/>

@@ -27,7 +27,7 @@ const Cart = () => {
             let elementoEnArray = itemsEnCarrito.find(itemsEnCarrito => itemsEnCarrito.id === cadaProducto.id)
             let elementoEnArrayIndex = itemsEnCarrito.indexOf(elementoEnArray)
             console.log(elementoEnArrayIndex)
-            itemsEnCarrito.splice(elementoEnArrayIndex)
+            itemsEnCarrito.splice(elementoEnArrayIndex.elementoEnArrayIndex)
             console.log(itemsEnCarrito)
 	    }
     }

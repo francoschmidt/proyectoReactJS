@@ -24,7 +24,7 @@ const ItemDetailContainer = ({allCellph}) => {
                 <h3 style={{fontFamily:'serif'}} >Cargando producto...</h3>
             </div>
             :
-            <ItemDetail productoFiltrado={productoFiltrado}/>
+            <ItemDetail productoFiltrado={productoFiltrado} />
             }
         </div>
     )

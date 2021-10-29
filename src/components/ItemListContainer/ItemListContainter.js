@@ -1,7 +1,6 @@
 import React from 'react'
 import './ItemListContainer.css'
 import ItemList from '../ItemList/ItemList'
-// import Loader from "react-loader-spinner";
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 

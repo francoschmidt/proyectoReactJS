@@ -4,7 +4,7 @@ import Loader from 'react-loader-spinner';
 import { celulares } from '../helpers/arrayCelulares'
 import './ItemList.css'
 import { Link } from 'react-router-dom'
-
+import { useContext } from 'react';
 const ItemList = ({allCellph, setAllCellph}) => {
 
     //cuando carga el dom hago una promesa que guarda el array de 'celulares' en 'allCellph' dsp de 2s.

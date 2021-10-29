@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import Navbar from '../Navbar/Navbar';
 import ItemListContainter from '../ItemListContainer/ItemListContainter';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
-import CartContext from '../Contexts/CartContext'
+import CartContext, { CartContextProvider } from '../Contexts/CartContext'
 import Cart from '../Cart/Cart';
 
 const Main = () => {
@@ -15,7 +15,7 @@ const Main = () => {
 
     //declaro el array allCellph para mandarle en el ItemList los objetos de celulares
     const [allCellph, setAllCellph] = useState([]);
-
+    
     return (
         <CartContext>
         <BrowserRouter>

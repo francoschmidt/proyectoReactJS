@@ -28,8 +28,25 @@ const Cart = () => {
             let elementoEnArrayIndex = itemsEnCarrito.indexOf(elementoEnArray)
             console.log(elementoEnArrayIndex)
             itemsEnCarrito.splice(elementoEnArrayIndex)
+            console.log(itemsEnCarrito)
 	    }
     }
+    
+    let arrayPrecios = itemsEnCarrito.map(cada=>cada.productFinalPrice)
+
+    function sumar_array(array_numeros){
+        
+        var suma = 0;
+        
+        array_numeros.forEach(function(numero){
+            suma += numero;
+        });
+        
+        return suma;
+        
+    }
+    
+    var suma = sumar_array(arrayPrecios); //La función de suma
 
     return (
         <div>
@@ -42,12 +59,13 @@ const Cart = () => {
                         <h3 className="col-2">Producto</h3>
                         <h3 className="col-2">Precio</h3>
                         <h3 className="col-2">Cantidad</h3>
-                        <h3 className="col-2">Precio final</h3>
+                        <h3 className="col-2">Precio total</h3>
                     </div>
                     {/* arranca false vaciarCarro y muestro los productos, cuando apreta en borrar todo lo seteo true */}
                     {vaciarCarro===false
                     ?
-                    itemsEnCarrito.map(cadaUno =>
+                    <div>
+                    {itemsEnCarrito.map(cadaUno =>
                     <div key={cadaUno.id} className='container mb-3'>
                         <hr />
                         <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
@@ -55,11 +73,13 @@ const Cart = () => {
                             <div className='col-2'> {cadaUno.name} </div>
                             <div className='col-2'> ${cadaUno.productPrice} </div>
                             <div className='col-2'> {cadaUno.qty}u. </div>
-                            <div className='col-2'> ${parseInt(cadaUno.productFinalPrice*cadaUno.qty)} </div>
-                            <button onClick={()=>{eliminarElemento('botonCarrito', cadaUno)}} className='btn btn-danger' id='botonCarrito'>X</button>
+                            <div className='col-2'> ${parseInt(cadaUno.productPrice*cadaUno.qty)} </div>
+                            <button onClick={(e)=>{eliminarElemento('botonCarrito', cadaUno); sumar_array()}} className='btn btn-danger' id='botonCarrito'>X</button>
                         </div>
-                    </div> 
-                    )
+                    </div>
+                    )}
+                    <p style={{textAlign:'center'}}>Precio total final {suma} </p>
+                    </div>
                     :
                     null }
                     <div style={{display:'flex', justifyContent:'space-evenly'}}>

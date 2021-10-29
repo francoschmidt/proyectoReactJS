@@ -1,10 +1,10 @@
-import React from 'react'
+import React  from 'react'
 import CartWidget from '../CartWidget/CartWidget'
 import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom'
 
 const Navbar = ({nombreDelSitio}) => {
-    
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-secondary" id='nav'>

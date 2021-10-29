@@ -1,11 +1,11 @@
-import { createContext} from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 export const CartContextProvider = createContext()
 
 const CartContext = ({children}) => {
 
     let itemsEnCarrito = []
-    
+
     function addItem(name, id, qty, productPrice, productFinalPrice, stock) {
         //si todavia no agregue el elemento que estoy agregando lo pusheo al array, sino solamente actualizo qty, final price y stock
         if(!itemsEnCarrito.find(elemento => elemento.id === id)){

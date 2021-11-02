@@ -1,13 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './CartWidget.css'
-import { CartContextProvider } from '../Contexts/CartContext'
 
-const CartWidget = () => {
-    //traigo el contexto para mostrar los elementos en el carrito
-    const cartContext = useContext(CartContextProvider)
-    const {itemsEnCarrito} = cartContext
+const CartWidget = ({itemsEnCarrito}) => {
 
     return (
         <div id='contenedorCartWidget'>

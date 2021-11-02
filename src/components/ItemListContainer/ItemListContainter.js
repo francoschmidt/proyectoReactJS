@@ -3,8 +3,12 @@ import './ItemListContainer.css'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
+import { getFirestore } from '../services/firebase'
 
 const ItemListContainter = ({allCellph, setAllCellph}) => {
+
+    const db = getFirestore()
+    console.log(db)
 
     //recibo id como parametro para mostrar los productos que pide el usuario mediante el link
     let {id} = useParams()

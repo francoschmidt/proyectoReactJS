@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
+import imgCarritoVacio from '../../images/carritoVacio.png'
 
 const Cart = () => {
 
@@ -32,21 +33,19 @@ const Cart = () => {
 	    }
     }
     
-    let arrayPrecios = itemsEnCarrito.map(cada=>cada.productFinalPrice)
-
-    function sumar_array(array_numeros){
-        
-        var suma = 0;
-        
-        array_numeros.forEach(function(numero){
-            suma += numero;
-        });
-        
-        return suma;
-        
+    let preciosFinalesCadaProducto = [];
+    if(itemsEnCarrito.length){
+        itemsEnCarrito.map(cadaUno=>
+            preciosFinalesCadaProducto.push(cadaUno.productPrice * cadaUno.qty)
+        )
     }
-    
-    var suma = sumar_array(arrayPrecios); //La función de suma
+    console.log(preciosFinalesCadaProducto)
+
+    const reducer = (previo, siguiente) =>{
+        return previo + siguiente
+    }
+
+    let precioFinalTotal = preciosFinalesCadaProducto.length?preciosFinalesCadaProducto.reduce(reducer):0
 
     return (
         <div>
@@ -74,11 +73,11 @@ const Cart = () => {
                             <div className='col-2'> ${cadaUno.productPrice} </div>
                             <div className='col-2'> {cadaUno.qty}u. </div>
                             <div className='col-2'> ${parseInt(cadaUno.productPrice*cadaUno.qty)} </div>
-                            <button onClick={(e)=>{eliminarElemento('botonCarrito', cadaUno); sumar_array()}} className='btn btn-danger' id='botonCarrito'>X</button>
+                            <button onClick={(e)=>{eliminarElemento('botonCarrito', cadaUno)}} className='btn btn-danger' id='botonCarrito'>X</button>
                         </div>
                     </div>
                     )}
-                    <p style={{textAlign:'center'}}>Precio total final {suma} </p>
+                    <p style={{textAlign:'center'}}>Precio total final ${precioFinalTotal} </p>
                     </div>
                     :
                     null }
@@ -88,13 +87,13 @@ const Cart = () => {
                     </div>
                 </div>
                 </>
-
-            // itemsEnCarrito.map(cadaCelular =>
-            //     <div key={cadaCelular.id} className="card" style={{width:'18em'}}>
-            //         <p>{cadaCelular.name}</p>
-            //     </div>)
             :
-            <div>No hay items en el carrito aun</div>}
+            <div className='d-flex flex-column mt-5 mb-5 align-items-center'>
+                <h1 style={{fontFamily:'monospace'}}>Su carrito se encuentra vacío</h1>
+                <img style={{height:'375px', width:'425px', marginBottom:'40px'}} src={imgCarritoVacio}></img>
+                <p className='text-center fs-4'>Por favor agregue algún producto al carrito para ver los detalles de la compra</p>
+            </div>
+            }
 
         </div>
     )

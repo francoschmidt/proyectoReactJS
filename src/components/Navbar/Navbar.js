@@ -1,9 +1,28 @@
-import React  from 'react'
+import React, {useContext} from 'react'
 import CartWidget from '../CartWidget/CartWidget'
 import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom'
+import { CartContextProvider } from '../Contexts/CartContext'
+import Swal from 'sweetalert2'
 
 const Navbar = ({nombreDelSitio}) => {
+    
+    //traigo el contexto para mostrar los elementos en el carrito
+    const cartContext = useContext(CartContextProvider)
+    const {itemsEnCarrito} = cartContext
+
+    //alert no hay items en carrito
+    function alert(){
+        Swal.fire({
+            title: '<h2>Carrito vacío</h2>',
+            icon: 'info',
+            html:
+              'Agregue algún producto al carrito para ver los detalles de la compra',
+            focusConfirm: true,
+            confirmButtonText:
+              '<a class="text-decoration-none text-white" href="/">Volver a comprar</a>',
+        })
+    }
 
     return (
         <header>
@@ -23,11 +42,21 @@ const Navbar = ({nombreDelSitio}) => {
                             <Link to='/marca/samsung' className='navbarLinks'><h5 className="nav-link active fs-5 mx-3">Samsung</h5></Link>
                         </div>
                     </div>
+                    {/* CLICK EN CARRITO: si hay productos en el carrito los muestro sino muestro el alert  */}
+                    {itemsEnCarrito.length
+                    ?
                     <Link to='/cart' className='navbarLinks'>
                         <div id='contenedorCartWidget'>
-                            <CartWidget />
+                            <CartWidget itemsEnCarrito={itemsEnCarrito} />
                         </div>
                     </Link>
+                    :
+                    <div>
+                        <div onClick={()=>alert()} className='navbarLinks'>
+                            <CartWidget itemsEnCarrito={itemsEnCarrito} />
+                        </div>
+                    </div>
+                    }
                 </div>
             </nav>
         </header>

@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
-import CartContext, { CartContextProvider } from '../Contexts/CartContext'
+import CartContext from '../Contexts/CartContext'
 import Cart from '../Cart/Cart';
 
 const Main = () => {
@@ -16,24 +16,28 @@ const Main = () => {
     //declaro el array allCellph para mandarle en el ItemList los objetos de celulares
     const [allCellph, setAllCellph] = useState([]);
     
+    //agrego los navbar en todos los route porque sino no se actualiza nunca la vista del navbar entonces no se cambia el numero de cantidad de items en carrito
     return (
         <CartContext>
         <BrowserRouter>
-            <Navbar nombreDelSitio={nombreDelSitio} />
             <Switch>
                 <Route exact path='/'>
+                    <Navbar nombreDelSitio={nombreDelSitio} />
                     <Home nombreDelSitio={nombreDelSitio}/>
                     <ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} />
                     {/* <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} /> */}
                 </Route>
                 <Route exact path='/marca/:id'>
+                    <Navbar nombreDelSitio={nombreDelSitio} />
                     <ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} />
                 </Route>
                 <Route exact path='/item/:id'>
+                    <Navbar nombreDelSitio={nombreDelSitio} />
                     <div style={{display:'none'}}><ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} /></div>
                     <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} />
                 </Route>
                 <Route exact path='/cart'>
+                    <Navbar nombreDelSitio={nombreDelSitio} />
                     <Cart/>
                 </Route>
             </Switch>

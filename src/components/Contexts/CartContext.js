@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect } from 'react'
 
 export const CartContextProvider = createContext()
 
@@ -13,11 +13,10 @@ const CartContext = ({children}) => {
         }else{
             let compraMismoProducto = itemsEnCarrito.find(elemento => elemento.id === id)
             compraMismoProducto.qty += qty
-            compraMismoProducto.finalPrice += productFinalPrice
             compraMismoProducto.stock -= qty
+            compraMismoProducto.productFinalPrice += qty*productPrice
         }
     }
-
 
     return (
         <CartContextProvider.Provider value={{addItem, itemsEnCarrito}}>

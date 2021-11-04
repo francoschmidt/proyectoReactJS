@@ -1,9 +1,8 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import Loader from 'react-loader-spinner'
 import { useParams } from 'react-router'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import './ItemDetailContainer.css'
-import { CartContextProvider } from '../Contexts/CartContext'
 
 const ItemDetailContainer = ({allCellph}) => {
     

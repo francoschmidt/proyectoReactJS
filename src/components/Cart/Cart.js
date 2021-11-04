@@ -7,7 +7,7 @@ const Cart = () => {
     //traigo el contexto para mostrar los elementos en el carrito
     const cartContext = useContext(CartContextProvider)
     let {itemsEnCarrito} = cartContext;
-
+    
     let [vaciarCarro, setVaciarCarro] = useState(false)
     //cuando clickeo borrar todos el carrito se vacia y tmb el array de productos a comprar
     function borrarTodos() {
@@ -39,7 +39,9 @@ const Cart = () => {
             preciosFinalesCadaProducto.push(cadaUno.productPrice * cadaUno.qty)
         )
     }
+
     console.log(preciosFinalesCadaProducto)
+    console.log(itemsEnCarrito)
 
     const reducer = (previo, siguiente) =>{
         return previo + siguiente
@@ -53,9 +55,9 @@ const Cart = () => {
             ?
                 <>
                 <div className='m-5'>
-                    <div className='container' style={{display:'flex', flexDirection:'row'}}>
+                    <div className='container' style={{display:'flex', flexDirection:'row', textAlign:'center'}}>
                         <div className="col-2"></div>
-                        <h3 className="col-2">Producto</h3>
+                        <h3 className="col-2">Celular</h3>
                         <h3 className="col-2">Precio</h3>
                         <h3 className="col-2">Cantidad</h3>
                         <h3 className="col-2">Precio total</h3>
@@ -67,8 +69,8 @@ const Cart = () => {
                     {itemsEnCarrito.map(cadaUno =>
                     <div key={cadaUno.id} className='container mb-3'>
                         <hr />
-                        <div style={{display:'flex', flexDirection:'row', alignItems:'center'}} >
-                            <div className='col-2'></div>
+                        <div style={{display:'flex', flexDirection:'row', alignItems:'center', textAlign:'center'}} >
+                            <div className='col-2'> <img src={cadaUno.imgURL} alt="img" style={{width:'50%'}} /> </div>
                             <div className='col-2'> {cadaUno.name} </div>
                             <div className='col-2'> ${cadaUno.productPrice} </div>
                             <div className='col-2'> {cadaUno.qty}u. </div>
@@ -90,7 +92,7 @@ const Cart = () => {
             :
             <div className='d-flex flex-column mt-5 mb-5 align-items-center'>
                 <h1 style={{fontFamily:'monospace'}}>Su carrito se encuentra vacío</h1>
-                <img style={{height:'375px', width:'425px', marginBottom:'40px'}} src={imgCarritoVacio}></img>
+                <img alt='carritoVacio' style={{height:'375px', width:'425px', marginBottom:'40px'}} src={imgCarritoVacio}></img>
                 <p className='text-center fs-4'>Por favor agregue algún producto al carrito para ver los detalles de la compra</p>
             </div>
             }

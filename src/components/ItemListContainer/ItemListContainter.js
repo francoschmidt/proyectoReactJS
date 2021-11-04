@@ -3,12 +3,8 @@ import './ItemListContainer.css'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { getFirestore } from '../services/firebase'
 
 const ItemListContainter = ({allCellph, setAllCellph}) => {
-
-    const db = getFirestore()
-    console.log(db)
 
     //recibo id como parametro para mostrar los productos que pide el usuario mediante el link
     let {id} = useParams()
@@ -29,7 +25,7 @@ const ItemListContainter = ({allCellph, setAllCellph}) => {
             <div className='d-flex justify-content-center'> 
             {productoFilterMismoId.map(cadaCelu =>
                 <div key={cadaCelu.id} className="card m-3" style={{width:'18em'}}>
-                    <img src={cadaCelu.pictureURL} className="card-img-top" alt="..."/>
+                    <img src={cadaCelu.imgURL} alt="..."/>
                     <div className="card-body d-flex flex-column justify-content-end">
                         <h5 className="card-title">{cadaCelu.title}</h5>
                         <p className="card-text">${cadaCelu.price}</p>

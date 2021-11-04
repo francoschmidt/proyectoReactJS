@@ -66,7 +66,7 @@ const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) =
                         disabled={initial > stockActualizado ? true:null} 
                         onClick={() => {actualizarStock();
                                         setearCompra();
-                                        addItem(productoFiltrado.title, productoFiltrado.id, productoFiltrado.qty, productoFiltrado.price, productoFiltrado.price*productoFiltrado.qty, productoFiltrado.stock)}}
+                                        addItem(productoFiltrado.title, productoFiltrado.id, productoFiltrado.qty, productoFiltrado.price, productoFiltrado.price*productoFiltrado.qty, productoFiltrado.stock, productoFiltrado.imgURL)}}
                         id='agregarAlCarrito'
                         style={{width:'100%'}}
                         className='mt-3 btn btn-primary agregar'>Agregar al carrito</button>

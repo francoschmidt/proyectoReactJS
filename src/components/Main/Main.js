@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Navbar from '../Navbar/Navbar';
 import ItemListContainter from '../ItemListContainer/ItemListContainter';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
 import CartContext from '../Contexts/CartContext'
 import Cart from '../Cart/Cart';
+import { getFirestore } from '../services/firebase';
 
 const Main = () => {
 
@@ -16,6 +17,17 @@ const Main = () => {
     //declaro el array allCellph para mandarle en el ItemList los objetos de celulares
     const [allCellph, setAllCellph] = useState([]);
     
+    useEffect(()=>{
+        setTimeout(() => {
+            const db = getFirestore()
+            db.collection('productos').get()
+            .then(resp => setAllCellph(resp.docs.map(cadaProducto => ({id : cadaProducto.id, ...cadaProducto.data()}))))
+            .catch(err => console.log('error ' + err))
+        }, 2000);
+    }, [])
+
+    console.log(allCellph)
+
     //agrego los navbar en todos los route porque sino no se actualiza nunca la vista del navbar entonces no se cambia el numero de cantidad de items en carrito
     return (
         <CartContext>

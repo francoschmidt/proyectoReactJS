@@ -18,7 +18,7 @@ const ItemDetail = ({productoFiltrado}) => {
         <>
             <div id='contenedorItemDetail'>
                 <div key={productoFiltrado.id} className="card col-4">
-                    <img src={productoFiltrado.pictureURL} className="card-img-top" alt="..."/>
+                    <img src={productoFiltrado.imgURL} className="card-img-top" alt="..."/>
                     <div className="card-body d-flex row" id='contenedorCards' style={{alignContent:'end'}}>
                         <h4 className="card-title">{productoFiltrado.title}</h4>
                         <h5 className="fw-light card-title">•Memoria interna {productoFiltrado.internalMemory}</h5>

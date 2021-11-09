@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
 import imgCarritoVacio from '../../images/carritoVacio.png'
+import firebase from "firebase"
+import { getFirestore } from "../services/firebase"
 
 const Cart = () => {
 
@@ -33,6 +35,7 @@ const Cart = () => {
 	    }
     }
     
+    //precio final de cada producto lo guardo en un array aparte
     let preciosFinalesCadaProducto = [];
     if(itemsEnCarrito.length){
         itemsEnCarrito.map(cadaUno=>
@@ -48,6 +51,63 @@ const Cart = () => {
     }
 
     let precioFinalTotal = preciosFinalesCadaProducto.length?preciosFinalesCadaProducto.reduce(reducer):0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const generarOrden = () => {
+        
+    
+        let orden = {}
+        orden.date = firebase.firestore.Timestamp.fromDate(new Date())
+        orden.buyer = {name:'pedro chavez', email:'pedro@hotmail.com', phone:'2915333444'}
+        orden.products = itemsEnCarrito.map(cadaProducto => {
+            const id = cadaProducto.id
+            const name = cadaProducto.name
+            const qty = cadaProducto.qty
+            const productFinalPrice = cadaProducto.productFinalPrice
+        
+            return {id, name, qty, productFinalPrice}
+        })
+        orden.ordenPrecioFinal = precioFinalTotal
+        
+        
+        const db = getFirestore()
+        const ordenesCollection = db.collection('ordenes')
+        ordenesCollection.add(orden)
+            .then(res => {console.log(res.id); alert('Compra exitosa. Su id de compra es: ' + res.id)})
+            .catch(err => console.log(err))
+
+        // const updateQuery = db.collection('productos')
+        // updateQuery.doc('DyDYk92FzcG69RxC8HG3').update({
+        //     mark:'mistral'
+        // })
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <div>
@@ -85,7 +145,7 @@ const Cart = () => {
                     null }
                     <div style={{display:'flex', justifyContent:'space-evenly'}}>
                         <button className='btn btn-danger' onClick={() => borrarTodos()}>Borrar todo</button>
-                        <button className='btn btn-success' onClick={()=>alert('Aún no disponible')}>Finalizar compra</button>
+                        <button className='btn btn-success' onClick={generarOrden}>Finalizar compra</button>
                     </div>
                 </div>
                 </>

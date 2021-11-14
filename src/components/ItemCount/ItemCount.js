@@ -2,12 +2,13 @@ import React, {useState} from 'react'
 import { useContext } from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
 
-const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) => {
+const ItemCount = ({initial, setInitial, productoFiltrado}) => {
 
     //aca guardo el stock dinamicamente, aunque no se guarda directamente en la prop xcelu.stock, sino que queda aca.
     //Despues paso que stock actualizado es igual a stock. Inicia con el valor 'stock' del producto en el que me encuentro
     let [stockActualizado, setStockActualizado] = useState(productoFiltrado.stock)
-    
+
+
     //cuando clickeo en sumar seteo el 'initial'
     function onAdd(){
         if (initial < stockActualizado){
@@ -30,12 +31,6 @@ const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) =
             productoFiltrado.stock = stockActualizado;
             console.log(productoFiltrado.stock + ' en stock')
         }
-    }
-
-    //seteo el state de compra (de ItemDetail) cuando clickea en agregar al carrito
-    function setearCompra(){
-        setCompra(compra=initial)
-        console.log(`va a comprar ${compra} productos`)
     }
 
     //obtengo el context de cantidad de items en carrito y hago destructuring
@@ -65,7 +60,6 @@ const ItemCount = ({initial, setInitial, productoFiltrado, compra, setCompra}) =
                     <button 
                         disabled={initial > stockActualizado ? true:null} 
                         onClick={() => {actualizarStock();
-                                        setearCompra();
                                         addItem(productoFiltrado.title, productoFiltrado.id, productoFiltrado.qty, productoFiltrado.price, productoFiltrado.price*productoFiltrado.qty, productoFiltrado.stock, productoFiltrado.imgURL)}}
                         id='agregarAlCarrito'
                         style={{width:'100%'}}

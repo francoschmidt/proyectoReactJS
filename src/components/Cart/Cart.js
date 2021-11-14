@@ -3,6 +3,7 @@ import { CartContextProvider } from '../Contexts/CartContext'
 import imgCarritoVacio from '../../images/carritoVacio.png'
 import firebase from "firebase"
 import { getFirestore } from "../services/firebase"
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
 
@@ -43,9 +44,7 @@ const Cart = () => {
         )
     }
 
-    console.log(preciosFinalesCadaProducto)
-    console.log(itemsEnCarrito)
-
+    //funcion para hacer reduce
     const reducer = (previo, siguiente) =>{
         return previo + siguiente
     }
@@ -53,22 +52,8 @@ const Cart = () => {
     let precioFinalTotal = preciosFinalesCadaProducto.length?preciosFinalesCadaProducto.reduce(reducer):0
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     const generarOrden = () => {
-        
-    
+
         let orden = {}
         orden.date = firebase.firestore.Timestamp.fromDate(new Date())
         orden.buyer = {name:'pedro chavez', email:'pedro@hotmail.com', phone:'2915333444'}
@@ -76,9 +61,10 @@ const Cart = () => {
             const id = cadaProducto.id
             const name = cadaProducto.name
             const qty = cadaProducto.qty
+            const productPrice = cadaProducto.productPrice
             const productFinalPrice = cadaProducto.productFinalPrice
         
-            return {id, name, qty, productFinalPrice}
+            return {id, name, qty, productPrice, productFinalPrice}
         })
         orden.ordenPrecioFinal = precioFinalTotal
         
@@ -89,28 +75,30 @@ const Cart = () => {
             .then(res => {console.log(res.id); alert('Compra exitosa. Su id de compra es: ' + res.id)})
             .catch(err => console.log(err))
 
-        // const updateQuery = db.collection('productos')
-        // updateQuery.doc('DyDYk92FzcG69RxC8HG3').update({
-        //     mark:'mistral'
-        // })
+        //actualiza todos los items que estan en itemsEnCarrito
+        const itemsToUpdate = db.collection('productos').where(
+            firebase.firestore.FieldPath.documentId(), 'in', itemsEnCarrito.map(item => item.id)
+        )
+        
+        const batch = db.batch()
 
+        //por cada item restar del stock la cantidad en el carrito
+        itemsToUpdate.get()
+            .then(collection=>{
+                collection.docs.forEach(document=>{
+                    batch.update(document.ref, {
+                        stock: document.data().stock - itemsEnCarrito.find(item => item.id === document.id).qty
+                    })
+                })
+
+                batch.commit()
+                    .then(res => console.log('batch: ' + res))
+            })
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
-        <div>
+        <>
+            {/* Si hay items en el carrito los muestro, sino aviso que no hay */}
             {itemsEnCarrito.length
             ?
                 <>
@@ -122,7 +110,7 @@ const Cart = () => {
                         <h3 className="col-2">Cantidad</h3>
                         <h3 className="col-2">Precio total</h3>
                     </div>
-                    {/* arranca false vaciarCarro y muestro los productos, cuando apreta en borrar todo lo seteo true */}
+                    {/* arranca false vaciarCarro y muestro los productos, cuando apreta en borrar todo lo seteo true y desaparecen */}
                     {vaciarCarro===false
                     ?
                     <div>
@@ -145,7 +133,7 @@ const Cart = () => {
                     null }
                     <div style={{display:'flex', justifyContent:'space-evenly'}}>
                         <button className='btn btn-danger' onClick={() => borrarTodos()}>Borrar todo</button>
-                        <button className='btn btn-success' onClick={generarOrden}>Finalizar compra</button>
+                        <Link to='/formulario'> <button className='btn btn-success'>Proceder al pago</button></Link>
                     </div>
                 </div>
                 </>
@@ -153,11 +141,10 @@ const Cart = () => {
             <div className='d-flex flex-column mt-5 mb-5 align-items-center'>
                 <h1 style={{fontFamily:'monospace'}}>Su carrito se encuentra vacío</h1>
                 <img alt='carritoVacio' style={{height:'375px', width:'425px', marginBottom:'40px'}} src={imgCarritoVacio}></img>
-                <p className='text-center fs-4'>Por favor agregue algún producto al carrito para ver los detalles de la compra</p>
+                <p className='text-center fs-4'>Por favor agregue algún producto al carrito para realizar su compra</p>
             </div>
             }
-
-        </div>
+        </>
     )
 }
 

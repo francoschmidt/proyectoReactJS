@@ -17,8 +17,23 @@ const CartContext = ({children}) => {
         }
     }
 
+    //precio final de cada producto lo guardo en un array aparte
+    let preciosFinalesCadaProducto = [];
+    
+    if(itemsEnCarrito.length){
+        itemsEnCarrito.map(cadaUno=>
+            preciosFinalesCadaProducto.push(cadaUno.productPrice * cadaUno.qty)
+        )
+    }
+
+    const reducer = (previo, siguiente) =>{
+        return previo + siguiente
+    }
+
+    let precioFinalTotal = preciosFinalesCadaProducto.length?preciosFinalesCadaProducto.reduce(reducer):0
+
     return (
-        <CartContextProvider.Provider value={{addItem, itemsEnCarrito}}>
+        <CartContextProvider.Provider value={{addItem, itemsEnCarrito, preciosFinalesCadaProducto, precioFinalTotal}}>
             {children}
         </CartContextProvider.Provider>
     )

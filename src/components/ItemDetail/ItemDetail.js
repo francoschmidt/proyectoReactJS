@@ -11,9 +11,6 @@ const ItemDetail = ({productoFiltrado}) => {
     //numeero que figura en el item detail
     const [initial, setInitial] = useState(1);
 
-    //creo estado para setear cantidad de productos que va a comprar el usuario
-    let [compra, setCompra] = useState()
-
     return (
         <>
             <div id='contenedorItemDetail'>
@@ -30,9 +27,7 @@ const ItemDetail = ({productoFiltrado}) => {
                         <ItemCount
                             initial={initial} 
                             setInitial={setInitial} 
-                            productoFiltrado={productoFiltrado}
-                            compra={compra}
-                            setCompra={setCompra} />
+                            productoFiltrado={productoFiltrado} />
                         <Link 
                             to='/cart'
                             id='contenedorIrAlCarrito' 

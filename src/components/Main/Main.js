@@ -8,6 +8,7 @@ import Home from '../Home/Home';
 import CartContext from '../Contexts/CartContext'
 import Cart from '../Cart/Cart';
 import { getFirestore } from '../services/firebase';
+import Formulario from '../Formulario/Formulario';
 
 const Main = () => {
 
@@ -62,6 +63,10 @@ const Main = () => {
                 <Route exact path='/cart'>
                     <Navbar nombreDelSitio={nombreDelSitio} />
                     <Cart/>
+                </Route>
+                <Route exact path='/formulario'>
+                    <Navbar nombreDelSitio={nombreDelSitio} />
+                    <Formulario/>
                 </Route>
             </Switch>
             <Footer nombreDelSitio={nombreDelSitio} />

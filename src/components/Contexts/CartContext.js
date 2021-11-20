@@ -34,6 +34,18 @@ const CartContext = ({children}) => {
     
     let precioFinalTotal = preciosFinalesCadaProducto.length?preciosFinalesCadaProducto.reduce(reducer):0
 
+    let buyerDatos = {}
+
+    const buyer = (nombre, apellido, mail, telefono, provincia, ciudad, direccionCalle, direccionAltura) =>{
+        buyerDatos.nombre = `${nombre} ${apellido}`
+        buyerDatos.mail = mail
+        buyerDatos.telefono = telefono
+        buyerDatos.provincia = provincia
+        buyerDatos.ciudad = ciudad
+        buyerDatos.direccionCalle = direccionCalle
+        buyerDatos.direccionAltura = direccionAltura
+    }
+
     //funcion que genera orden y setea el stock
     const generarOrden = (e) => {
         e.preventDefault()
@@ -41,7 +53,7 @@ const CartContext = ({children}) => {
         //genero datos de la orden
         let orden = {}
         orden.date = firebase.firestore.Timestamp.fromDate(new Date())
-        orden.buyer = {name:'pedro chavez', email:'pedro@hotmail.com', phone:'2915333444'}
+        orden.buyer = buyerDatos
         orden.products = itemsEnCarrito.map(cadaProducto => {
             const id = cadaProducto.id
             const name = cadaProducto.name
@@ -84,14 +96,6 @@ const CartContext = ({children}) => {
                 batch.commit()
                     .then(res => console.log('batch: ' + res))
             })
-    }
-
-    let buyerDatos = {}
-
-    const buyer = (nombre, apellido, mail) =>{
-        buyerDatos.nombre = nombre
-        buyerDatos.apellido = apellido
-        buyerDatos.mail = mail
     }
 
     return (

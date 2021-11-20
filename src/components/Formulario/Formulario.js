@@ -60,7 +60,7 @@ const Formulario = () => {
                 </div>
                 <div className="col-md-3 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustom04" className="form-label">Provincia</label>
-                    <select onChange={(e)=>setProvinciaElegida(e.target.value), (e)=>console.log(e.target)} id='seleccionarProvincia' className="form-select" id="validationCustom04" required>
+                    <select onChange={(e)=>setProvinciaElegida(e.target.value)} id='seleccionarProvincia' className="form-select" id="validationCustom04" required>
                     {provincias?
                     provincias.map(cada => <option key={cada.nombre} value={provincias.indexOf(cada)}>{cada.nombre}</option>)
                     :

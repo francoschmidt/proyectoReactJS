@@ -38,8 +38,6 @@ const Main = () => {
 
 
 
-
-
     //agrego los navbar en todos los route porque sino no se actualiza nunca la vista del navbar entonces no se cambia el numero de cantidad de items en carrito
     return (
         <CartContext>
@@ -66,7 +64,7 @@ const Main = () => {
                 </Route>
                 <Route exact path='/formulario'>
                     <Navbar nombreDelSitio={nombreDelSitio} />
-                    <Formulario/>
+                    <Formulario />
                 </Route>
             </Switch>
             <Footer nombreDelSitio={nombreDelSitio} />

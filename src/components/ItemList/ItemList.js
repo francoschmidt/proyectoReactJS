@@ -11,6 +11,7 @@ const ItemList = ({allCellph}) => {
         {
             allCellph.length
             ?
+            
             <div id='cacho' style={{display:'flex', marginBottom:'2%'}}>
             {allCellph.map(cadaCelular =>
                 <div key={cadaCelular.id} className="card" style={{width:'18em'}}>

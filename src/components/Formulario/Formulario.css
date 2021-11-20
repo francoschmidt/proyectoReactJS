@@ -1,0 +1,8 @@
+.camposFormulario{
+    text-align: center;
+    margin-top: 1%;
+    font-family: 'Courier New', Courier, monospace;
+}
+#asdf::placeholder{
+    color: red;
+}

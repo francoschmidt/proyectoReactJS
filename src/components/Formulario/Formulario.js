@@ -1,48 +1,89 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
 import imgCarritoVacio from '../../images/carritoVacio.png'
 import { Link } from 'react-router-dom'
+import '../Formulario/Formulario.css'
 
-const Formulario = ({generarOrden}) => {
 
+const Formulario = () => {
+
+    //traigo el json de provincias y ciudades
+    const customData = require('../CiudadesJSON/ciudades.json');
+
+    //traigo lo que voy a usar del context
     const cartContext = useContext(CartContextProvider)
-    const {itemsEnCarrito} = cartContext
+    const {itemsEnCarrito, generarOrden, buyer, buyerDatos} = cartContext
+
+    const [provincias, setProvincias] = useState()
+    
+    //seteo provincias 
+    useEffect(() => {
+        setProvincias(customData.map(cada => cada))
+    },[])
+
+    let [provinciaElegida, setProvinciaElegida] = useState(0)
+
+    let [nombre, setNombre] = useState()
+    let [apellido, setApellido] = useState()
+    let [mail, setMail] = useState()
+    let [provincia, setProvincia] = useState('Buenos Aires')
+    let [ciudad, setCiudad] = useState('Abasto')
+    let [direccionCalle, setDireccionCalle] = useState()
+    let [direccionAltura, setDireccionAltura] = useState()
+
+    let datosPersonales = {nombre: nombre, apellido: apellido, mail: mail, provincia: provincia}
+
+    console.log(datosPersonales)
+    
+    buyer(nombre, apellido, mail)
+    console.log(buyerDatos)
 
     return (
         <>
         {itemsEnCarrito.length
         ?
-        <div>
-            <form onSubmit={()=>generarOrden()} name="row g-3 needs-validation">
-                <div className="col-md-4">
+        <div style={{display:'flex', justifyContent: 'center'}}>
+            <form style={{width:'80%', display: 'flex', flexDirection:'column', alignItems: 'center'}} onSubmit={generarOrden} name="row g-3 needs-validation">
+                <div className="col-md-4 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustom01" className="form-label">Nombre</label>
-                    <input type="text" className="form-control" id="validationCustom01" placeholder="Juan" required />
+                    <input onChange={(e) => setNombre(e.target.value)} type="text" className="form-control" id="validationCustom01" placeholder="Juan" required />
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustom02" className="form-label">Apellido</label>
-                    <input type="text" className="form-control" id="validationCustom02" placeholder="Perez" required />
+                    <input onChange={(e) => setApellido(e.target.value)} type="text" className="form-control" id="validationCustom02" placeholder="Perez" required />
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustomUsername" className="form-label">E-mail</label>
                     <div className="input-group has-validation">
-                    <input type="email" className="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
+                        <input onChange={(e) => setMail(e.target.value)} type="email" placeholder='juanperez@hotmail.com' className="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
                     </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustom04" className="form-label">Provincia</label>
-                    <select className="form-select" id="validationCustom04" required>
-                    <option>...</option>
+                    <select onChange={(e)=>setProvinciaElegida(e.target.value), (e)=>console.log(e.target)} id='seleccionarProvincia' className="form-select" id="validationCustom04" required>
+                    {provincias?
+                    provincias.map(cada => <option key={cada.nombre} value={provincias.indexOf(cada)}>{cada.nombre}</option>)
+                    :
+                    null}
                     </select>
                 </div>
-                <div className="col-md-6">
-                    <label htmlFor="validationCustom03" className="form-label">Ciudad</label>
-                    <input type="text" className="form-control" id="validationCustom03" required />
+                <div className="col-md-6 fs-3 fw-bolder camposFormulario">
+                    <label className="form-label">Ciudad</label>
+                    <select id='seleccionarProvincia' className="form-select" required>
+                    {provincias?
+                    provincias[provinciaElegida].ciudades.map(cada => <option key={cada.id} value={cada.nombre}>{cada.nombre}</option>)
+                    :
+                    null}
+                    </select>
                 </div>
-                <div className="col-md-3">
-                    <label htmlFor="validationCustom05" className="form-label">Código postal</label>
-                    <input type="number" className="form-control" id="validationCustom05" required />
+                <div className="fs-3 fw-bolder camposFormulario">
+                    <label className="form-label">Dirección</label>
+                    <div style={{display:'flex'}}>
+                        <input placeholder='Alem' type="text" className="form-control" required />
+                        <input placeholder='444' type="number" style={{width:'40%', marginLeft:'5%'}} className="form-control" required />
+                    </div>
                 </div>
-                <div className="col-12">
+                <div className="col-3 m-3">
                     <div className="form-check">
                     <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required />
                     <label className="form-check-label" htmlFor="invalidCheck">
@@ -50,8 +91,10 @@ const Formulario = ({generarOrden}) => {
                     </label>
                     </div>
                 </div>
-            <Link to='/cart'> <button>Volver</button> </Link>
-            <button type='submit'>Enviar</button>
+                <div className='d-flex m-3 justify-content-around' style={{width:'30%'}}>
+                    <Link to='/cart'> <button className="btn btn-primary">Volver</button> </Link>
+                    <button type='submit'  className="btn btn-success">Enviar</button>
+                </div>
             </form>
         </div>
         :

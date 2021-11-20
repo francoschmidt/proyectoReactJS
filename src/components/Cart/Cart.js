@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
 import imgCarritoVacio from '../../images/carritoVacio.png'
-import firebase from "firebase"
-import { getFirestore } from "../services/firebase"
 import { Link } from 'react-router-dom'
+import { reducer } from '../helpers/Alerts'
 
 const Cart = () => {
 
@@ -12,6 +11,7 @@ const Cart = () => {
     let {itemsEnCarrito} = cartContext;
     
     let [vaciarCarro, setVaciarCarro] = useState(false)
+
     //cuando clickeo borrar todos el carrito se vacia y tmb el array de productos a comprar
     function borrarTodos() {
         itemsEnCarrito.splice(0, itemsEnCarrito.length)
@@ -44,57 +44,7 @@ const Cart = () => {
         )
     }
 
-    //funcion para hacer reduce
-    const reducer = (previo, siguiente) =>{
-        return previo + siguiente
-    }
-
     let precioFinalTotal = preciosFinalesCadaProducto.length?preciosFinalesCadaProducto.reduce(reducer):0
-
-
-    const generarOrden = () => {
-
-        let orden = {}
-        orden.date = firebase.firestore.Timestamp.fromDate(new Date())
-        orden.buyer = {name:'pedro chavez', email:'pedro@hotmail.com', phone:'2915333444'}
-        orden.products = itemsEnCarrito.map(cadaProducto => {
-            const id = cadaProducto.id
-            const name = cadaProducto.name
-            const qty = cadaProducto.qty
-            const productPrice = cadaProducto.productPrice
-            const productFinalPrice = cadaProducto.productFinalPrice
-        
-            return {id, name, qty, productPrice, productFinalPrice}
-        })
-        orden.ordenPrecioFinal = precioFinalTotal
-        
-        
-        const db = getFirestore()
-        const ordenesCollection = db.collection('ordenes')
-        ordenesCollection.add(orden)
-            .then(res => {console.log(res.id); alert('Compra exitosa. Su id de compra es: ' + res.id)})
-            .catch(err => console.log(err))
-
-        //actualiza todos los items que estan en itemsEnCarrito
-        const itemsToUpdate = db.collection('productos').where(
-            firebase.firestore.FieldPath.documentId(), 'in', itemsEnCarrito.map(item => item.id)
-        )
-        
-        const batch = db.batch()
-
-        //por cada item restar del stock la cantidad en el carrito
-        itemsToUpdate.get()
-            .then(collection=>{
-                collection.docs.forEach(document=>{
-                    batch.update(document.ref, {
-                        stock: document.data().stock - itemsEnCarrito.find(item => item.id === document.id).qty
-                    })
-                })
-
-                batch.commit()
-                    .then(res => console.log('batch: ' + res))
-            })
-    }
 
     return (
         <>

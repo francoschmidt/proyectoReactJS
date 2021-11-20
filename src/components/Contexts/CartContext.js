@@ -1,6 +1,8 @@
-import { createContext, useState } from 'react'
+import { createContext } from 'react'
 import firebase from 'firebase'
 import { getFirestore } from '../services/firebase'
+import Swal from 'sweetalert2'
+
 export const CartContextProvider = createContext()
 
 const CartContext = ({children}) => {
@@ -74,7 +76,8 @@ const CartContext = ({children}) => {
         const db = getFirestore()
         const ordenesCollection = db.collection('ordenes')
         ordenesCollection.add(orden)
-            .then(res => {console.log(res.id); alert('Compra exitosa. Su id de compra es: ' + res.id)})
+            .then(res => {console.log(res.id); alert('Compra exitosa. Su id de compra es: ' + res.id)
+            })
             .catch(err => console.log(err))
 
         //actualiza todos los items que estan en itemsEnCarrito. La uso más abajo

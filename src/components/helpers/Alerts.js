@@ -7,10 +7,15 @@ export const alertTerminos = () =>{
     })
 }
 
-export const noItemsEnCarrito = () =>{
+export const alertNoItemsEnCarrito = () =>{
     Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'No hay items en el carrito!',
     })
+}
+
+//funcion para hacer reduce
+export const reducer = (previo, siguiente) =>{
+    return previo + siguiente
 }

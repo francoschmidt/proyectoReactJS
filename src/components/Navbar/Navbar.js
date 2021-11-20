@@ -3,27 +3,13 @@ import CartWidget from '../CartWidget/CartWidget'
 import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom'
 import { CartContextProvider } from '../Contexts/CartContext'
-import Swal from 'sweetalert2'
-import { noItemsEnCarrito } from '../helpers/Alerts'
+import { alertNoItemsEnCarrito } from '../helpers/Alerts'
 
 const Navbar = ({nombreDelSitio}) => {
     
     //traigo el contexto para mostrar los elementos en el carrito
     const cartContext = useContext(CartContextProvider)
     const {itemsEnCarrito} = cartContext
-
-    //alert no hay items en carrito
-    function alert(){
-        Swal.fire({
-            title: '<h2>Carrito vacío</h2>',
-            icon: 'info',
-            html:
-              'Agregue algún producto al carrito para ver los detalles de la compra',
-            focusConfirm: true,
-            confirmButtonText:
-              '<a class="text-decoration-none text-white" href="/">Volver a comprar</a>',
-        })
-    }
 
     return (
         <header>
@@ -53,7 +39,7 @@ const Navbar = ({nombreDelSitio}) => {
                     </Link>
                     :
                     <div>
-                        <div onClick={()=>noItemsEnCarrito()} className='navbarLinks'>
+                        <div onClick={()=>alertNoItemsEnCarrito()} className='navbarLinks'>
                             <CartWidget itemsEnCarrito={itemsEnCarrito} />
                         </div>
                     </div>

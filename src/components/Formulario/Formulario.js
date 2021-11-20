@@ -12,7 +12,7 @@ const Formulario = () => {
 
     //traigo lo que voy a usar del context
     const cartContext = useContext(CartContextProvider)
-    const {itemsEnCarrito, generarOrden, buyer, buyerDatos} = cartContext
+    const {itemsEnCarrito, generarOrden, buyer} = cartContext
 
     const [provincias, setProvincias] = useState()
     

@@ -1,0 +1,17 @@
+.textos{
+    margin-top: 2%;
+}
+#botonVolver{
+    border-radius: 500px;
+}
+#divContenedor{
+    text-align: center;
+}
+#imgDecepcion{
+    display: block;
+    width: 500px;
+    margin: auto;
+}
+#titulo{
+    font-size: 60px;
+}

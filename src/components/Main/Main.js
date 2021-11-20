@@ -9,6 +9,7 @@ import CartContext from '../Contexts/CartContext'
 import Cart from '../Cart/Cart';
 import { getFirestore } from '../services/firebase';
 import Formulario from '../Formulario/Formulario';
+import VistaError from '../VistaError/VistaError';
 
 const Main = () => {
 
@@ -54,6 +55,10 @@ const Main = () => {
                 <Route exact path='/formulario'>
                     <Navbar nombreDelSitio={nombreDelSitio} />
                     <Formulario />
+                </Route>
+                <Route exact path='*'>
+                    <Navbar nombreDelSitio={nombreDelSitio}/>
+                    <VistaError/>
                 </Route>
             </Switch>
             <Footer nombreDelSitio={nombreDelSitio} />

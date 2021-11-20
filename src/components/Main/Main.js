@@ -27,17 +27,6 @@ const Main = () => {
         }, 2000);
     }, [])
 
-    console.log(allCellph)
-
-
-    // const orders = db.collection('orders')
-    // const newOrder = {
-    //     buyer: userInfo,
-    //     items: itemsEnCarrito,
-    // }
-
-
-
     //agrego los navbar en todos los route porque sino no se actualiza nunca la vista del navbar entonces no se cambia el numero de cantidad de items en carrito
     return (
         <CartContext>

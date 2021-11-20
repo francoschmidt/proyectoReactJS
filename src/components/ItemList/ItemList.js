@@ -1,6 +1,5 @@
 import React from 'react'
 import Loader from 'react-loader-spinner';
-//importo el array de celulares con sus datos
 import './ItemList.css'
 import { Link } from 'react-router-dom'
 

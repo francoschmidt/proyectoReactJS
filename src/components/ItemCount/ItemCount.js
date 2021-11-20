@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useContext } from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
+import Swal from 'sweetalert2'
 
 const ItemCount = ({initial, setInitial, productoFiltrado}) => {
 
@@ -26,10 +27,8 @@ const ItemCount = ({initial, setInitial, productoFiltrado}) => {
     //muestro mensajes y seteo el stock original del producto y el stockActualizado
     function actualizarStock(){
         if (initial <= stockActualizado){
-            alert('Agregado al carrito exitosamente')
             setStockActualizado(stockActualizado = stockActualizado-initial)
             productoFiltrado.stock = stockActualizado;
-            console.log(productoFiltrado.stock + ' en stock')
         }
     }
 
@@ -60,7 +59,8 @@ const ItemCount = ({initial, setInitial, productoFiltrado}) => {
                     <button 
                         disabled={initial > stockActualizado ? true:null} 
                         onClick={() => {actualizarStock();
-                                        addItem(productoFiltrado.title, productoFiltrado.id, productoFiltrado.qty, productoFiltrado.price, productoFiltrado.price*productoFiltrado.qty, productoFiltrado.stock, productoFiltrado.imgURL)}}
+                                        addItem(productoFiltrado.title, productoFiltrado.id, productoFiltrado.qty, productoFiltrado.price, productoFiltrado.price*productoFiltrado.qty, productoFiltrado.stock, productoFiltrado.imgURL);
+                                        Swal.fire('Agregado al carrito exitosamente')}}
                         id='agregarAlCarrito'
                         style={{width:'100%'}}
                         className='mt-3 btn btn-primary agregar'>Agregar al carrito</button>

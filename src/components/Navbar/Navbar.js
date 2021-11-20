@@ -4,6 +4,7 @@ import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom'
 import { CartContextProvider } from '../Contexts/CartContext'
 import Swal from 'sweetalert2'
+import { noItemsEnCarrito } from '../helpers/Alerts'
 
 const Navbar = ({nombreDelSitio}) => {
     
@@ -52,7 +53,7 @@ const Navbar = ({nombreDelSitio}) => {
                     </Link>
                     :
                     <div>
-                        <div onClick={()=>alert()} className='navbarLinks'>
+                        <div onClick={()=>noItemsEnCarrito()} className='navbarLinks'>
                             <CartWidget itemsEnCarrito={itemsEnCarrito} />
                         </div>
                     </div>

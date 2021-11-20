@@ -3,7 +3,7 @@ import { CartContextProvider } from '../Contexts/CartContext'
 import imgCarritoVacio from '../../images/carritoVacio.png'
 import { Link } from 'react-router-dom'
 import '../Formulario/Formulario.css'
-
+import { alertTerminos } from '../helpers/Alerts'
 
 const Formulario = () => {
 
@@ -35,12 +35,13 @@ const Formulario = () => {
     let [direccionAltura, setDireccionAltura] = useState()
     
     buyer(nombre, apellido, mail, telefono, provincia, ciudad, direccionCalle, direccionAltura)
-    console.log(buyerDatos)
 
-    //esta funcion la ejecuto cuando cambio la provincia, no podia hacerla como los demas input con (e.target.value) porque como value tengo al index,
-    //entonces 
+    //esta funcion la ejecuto cuando se cambia la provincia, no podia hacerla como los demas input con (e.target.value) porque como value lo tengo al index,
+    //entonces seteo provincia con provincia[y aca el index de la provincia que se seleccionó].nombre
     function setearProvincia(){
-        provinciaElegida?setProvincia(provincias[provinciaElegida].nombre):console.log('aun no eligio la prov')
+        if(provinciaElegida){
+            setProvincia(provincias[provinciaElegida].nombre)
+        }
     }
 
     return (
@@ -72,6 +73,7 @@ const Formulario = () => {
                 </div>
                 <div className="col-md-3 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustom04" className="form-label">Provincia</label>
+                    {/* recorro todas las provincias y las muestro */}
                     <select onChange={(e)=>setProvinciaElegida(e.target.value)} onClick={setearProvincia} id='seleccionarProvincia' className="form-select" id="validationCustom04" required>
                     {provincias?
                     provincias.map(cada => <option key={cada.nombre} value={provincias.indexOf(cada)}>{cada.nombre}</option>) 
@@ -81,6 +83,7 @@ const Formulario = () => {
                 </div>
                 <div className="col-md-6 fs-3 fw-bolder camposFormulario">
                     <label className="form-label">Ciudad</label>
+                    {/* en funcion a la provincia elegida muestro las ciudades de la misma */}
                     <select onChange={(e)=>setCiudad(e.target.value)} id='seleccionarProvincia' className="form-select" required>
                     {provincias?
                     provincias[provinciaElegida].ciudades.map(cada => <option key={cada.id} value={cada.nombre}>{cada.nombre}</option>)
@@ -99,13 +102,14 @@ const Formulario = () => {
                     <div className="form-check">
                     <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required />
                     <label className="form-check-label" htmlFor="invalidCheck">
-                        Acepto <a href=''>términos y condiciones </a>
+                        Acepto <strong id='terminosYCondiciones' 
+                            onClick={()=>alertTerminos()}>términos y condiciones </strong>
                     </label>
                     </div>
                 </div>
                 <div className='d-flex m-3 justify-content-around' style={{width:'30%'}}>
                     <Link to='/cart'> <button className="btn btn-primary">Volver</button> </Link>
-                    <button type='submit'  className="btn btn-success">Enviar</button>
+                    <button type='submit' className="btn btn-success">Enviar</button>
                 </div>
             </form>
         </div>

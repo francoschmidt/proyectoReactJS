@@ -1,25 +1,19 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
 import imgCarritoVacio from '../../images/carritoVacio.png'
 import { Link } from 'react-router-dom'
 import '../Formulario/Formulario.css'
-import { alertTerminos } from '../helpers/Alerts'
+import { alertTerminos } from '../helpers/helpers'
 
 const Formulario = () => {
 
     //traigo el json de provincias y ciudades
     const customData = require('../CiudadesJSON/ciudades.json');
+    const provincias = customData
 
     //traigo lo que voy a usar del context
     const cartContext = useContext(CartContextProvider)
     const {itemsEnCarrito, generarOrden, buyer} = cartContext
-
-    const [provincias, setProvincias] = useState()
-    
-    //seteo provincias con el json de provincias
-    useEffect(() => {
-        setProvincias(customData.map(cada => cada))
-    },[])
 
     //array que guarda el index de provincia elegida
     let [provinciaElegida, setProvinciaElegida] = useState(0)
@@ -49,8 +43,8 @@ const Formulario = () => {
         {/* si hay items en el carrito muestro el formulario, sino aviso que no hay items en el carrito */}
         {itemsEnCarrito.length
         ?
-        <div style={{display:'flex', justifyContent: 'center'}}>
-            <form style={{width:'80%', display: 'flex', flexDirection:'column', alignItems: 'center'}} onSubmit={generarOrden} name="row g-3 needs-validation">
+        <div id='contenedorFormulario' >
+            <form id='formularioDatos' onSubmit={generarOrden} name="row g-3 needs-validation">
                 <div className="col-md-4 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustom01" className="form-label">Nombre</label>
                     <input onChange={(e) => setNombre(e.target.value)} type="text" className="form-control" id="validationCustom01" placeholder="Juan" required />
@@ -74,7 +68,7 @@ const Formulario = () => {
                 <div className="col-md-3 fs-3 fw-bolder camposFormulario">
                     <label htmlFor="validationCustom04" className="form-label">Provincia</label>
                     {/* recorro todas las provincias y las muestro */}
-                    <select onChange={(e)=>setProvinciaElegida(e.target.value)} onClick={setearProvincia} id='seleccionarProvincia' className="form-select" id="validationCustom04" required>
+                    <select onChange={(e)=>setProvinciaElegida(e.target.value)} onClick={setearProvincia} id='seleccionarProvincia' className="form-select" required>
                     {provincias?
                     provincias.map(cada => <option key={cada.nombre} value={provincias.indexOf(cada)}>{cada.nombre}</option>) 
                     :
@@ -93,9 +87,9 @@ const Formulario = () => {
                 </div>
                 <div className="fs-3 fw-bolder camposFormulario">
                     <label className="form-label">Dirección</label>
-                    <div style={{display:'flex'}}>
+                    <div id='divDireccion'>
                         <input placeholder='Alem' onChange={(e)=>setDireccionCalle(e.target.value)} type="text" className="form-control" required />
-                        <input placeholder='444' onChange={(e)=>setDireccionAltura(e.target.value)} type="number" style={{width:'40%', marginLeft:'5%'}} className="form-control" required />
+                        <input placeholder='444' onChange={(e)=>setDireccionAltura(e.target.value)} type="number" id='direccionAltura' className="form-control" required />
                     </div>
                 </div>
                 <div className="col-3 m-3">
@@ -107,7 +101,7 @@ const Formulario = () => {
                     </label>
                     </div>
                 </div>
-                <div className='d-flex m-3 justify-content-around' style={{width:'30%'}}>
+                <div className='d-flex m-3 justify-content-around' id='botonesVolverEnviar'>
                     <Link to='/cart'> <button className="btn btn-primary">Volver</button> </Link>
                     <button type='submit' className="btn btn-success">Enviar</button>
                 </div>
@@ -115,8 +109,8 @@ const Formulario = () => {
         </div>
         :
         <div className='d-flex flex-column mt-5 mb-5 align-items-center'>
-            <h1 style={{fontFamily:'monospace'}}>Su carrito se encuentra vacío</h1>
-            <img alt='carritoVacio' style={{height:'375px', width:'425px', marginBottom:'40px'}} src={imgCarritoVacio}></img>
+            <h1 id='avisoCarritoVacio'>Su carrito se encuentra vacío</h1>
+            <img alt='carritoVacio' id='carritoVacioImg' src={imgCarritoVacio}></img>
             <p className='text-center fs-4'>Por favor agregue algún producto al carrito para realizar su compra</p>
         </div>
         }

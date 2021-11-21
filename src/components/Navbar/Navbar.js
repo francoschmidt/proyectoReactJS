@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import CartWidget from '../CartWidget/CartWidget'
 import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom'
 import { CartContextProvider } from '../Contexts/CartContext'
-import { alertNoItemsEnCarrito } from '../helpers/Alerts'
+import { alertNoItemsEnCarrito } from '../helpers/helpers'
 
 const Navbar = ({nombreDelSitio}) => {
     

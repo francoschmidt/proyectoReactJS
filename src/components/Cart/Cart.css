@@ -1,0 +1,26 @@
+#containerTitulos{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+#containerDatos{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+#imgCelular{
+    width: 50%;
+}
+#precioFinal{
+    text-align: center;
+}
+#botones{
+    display: flex;
+    justify-content: space-evenly;
+}
+#imgCarritoVacio{
+    height: 375px;
+    width: 425px;
+    margin-bottom: 40px;
+}

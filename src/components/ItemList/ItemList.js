@@ -10,7 +10,6 @@ const ItemList = ({allCellph}) => {
         {
             allCellph.length
             ?
-            
             <div id='cacho' style={{display:'flex', marginBottom:'2%'}}>
             {allCellph.map(cadaCelular =>
                 <div key={cadaCelular.id} className="card" style={{width:'18em'}}>
@@ -23,9 +22,9 @@ const ItemList = ({allCellph}) => {
                 </div>)}
             </div>
             :
-            <div id='loaderContainer' style={{display:'flex', flexDirection:'column'}} >
+            <div id='loaderContainer' >
                 <Loader type={'Puff'} color={'aqua'} />
-                <h3 style={{fontFamily:'serif'}} >Cargando productos...</h3>
+                <h3 id='cargandoProductos' >Cargando productos...</h3>
             </div>
         }
         </>

@@ -6,3 +6,7 @@
 #botonCarrito{
     border-radius: 50%;
 }
+#contenedorIrAlCarrito{
+    display: flex;
+    justify-content: center;
+}

@@ -8,3 +8,31 @@
     text-decoration: underline;
     cursor: pointer;
 }
+#contenedorFormulario{
+    display: flex;
+    justify-content: center;
+}
+#formularioDatos{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+}
+#divDireccion{
+    display: flex;
+}
+#direccionAltura{
+    width: 40%;
+    margin-left: 5%;
+}
+#botonesVolverEnviar{
+    width: 30%;
+}
+#avisoCarritoVacio{
+    font-family: monospace;
+}
+#carritoVacioImg{
+    height: 375px;
+    width: 425px;
+    margin-bottom: 40px;
+}

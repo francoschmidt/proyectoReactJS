@@ -37,7 +37,6 @@ const Main = () => {
                     <Navbar nombreDelSitio={nombreDelSitio} />
                     <Home nombreDelSitio={nombreDelSitio}/>
                     <ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} />
-                    {/* <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} /> */}
                 </Route>
                 <Route exact path='/marca/:id'>
                     <Navbar nombreDelSitio={nombreDelSitio} />
@@ -45,7 +44,6 @@ const Main = () => {
                 </Route>
                 <Route exact path='/item/:id'>
                     <Navbar nombreDelSitio={nombreDelSitio} />
-                    <div style={{display:'none'}}><ItemListContainter allCellph={allCellph} setAllCellph={setAllCellph} /></div>
                     <ItemDetailContainer allCellph={allCellph} setAllCellph={setAllCellph} />
                 </Route>
                 <Route exact path='/cart'>

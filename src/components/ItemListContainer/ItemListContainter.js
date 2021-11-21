@@ -24,7 +24,7 @@ const ItemListContainter = ({allCellph, setAllCellph}) => {
         ?
             <div className='d-flex justify-content-center'> 
             {productoFilterMismoId.map(cadaCelu =>
-                <div key={cadaCelu.id} className="card m-3" style={{width:'18em'}}>
+                <div key={cadaCelu.id} className="card m-3" id='cardContainer'>
                     <img src={cadaCelu.imgURL} alt="..."/>
                     <div className="card-body d-flex flex-column justify-content-end">
                         <h5 className="card-title">{cadaCelu.title}</h5>

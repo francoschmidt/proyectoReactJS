@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
 const ItemDetail = ({productoFiltrado}) => {
-    
+
     //numeero que figura en el item detail
     const [initial, setInitial] = useState(1);
 
@@ -30,8 +30,7 @@ const ItemDetail = ({productoFiltrado}) => {
                             productoFiltrado={productoFiltrado} />
                         <Link 
                             to='/cart'
-                            id='contenedorIrAlCarrito' 
-                            style={{display:'flex', justifyContent:'center'}}>
+                            id='contenedorIrAlCarrito' >
                             <button className='mt-3 btn btn-success' id='botonCarrito'>
                                 <FontAwesomeIcon icon={faShoppingCart} color='white'/>
                             </button>

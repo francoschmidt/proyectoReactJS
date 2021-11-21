@@ -1,14 +1,15 @@
 import { createContext } from 'react'
 import firebase from 'firebase'
 import { getFirestore } from '../services/firebase'
-import Swal from 'sweetalert2'
+import { reducer } from '../helpers/helpers'
+import { compraExitosa } from '../helpers/helpers'
 
 export const CartContextProvider = createContext()
 
 const CartContext = ({children}) => {
 
     let itemsEnCarrito = []
-    
+
     function addItem(name, id, qty, productPrice, productFinalPrice, stock, imgURL) {
         //si todavia no agregue el elemento que estoy agregando lo pusheo al array, sino solamente actualizo qty, final price y stock
         if(!itemsEnCarrito.find(elemento => elemento.id === id)){
@@ -29,15 +30,11 @@ const CartContext = ({children}) => {
             preciosFinalesCadaProducto.push(cadaUno.productPrice * cadaUno.qty)
             )
         }
-
-        const reducer = (previo, siguiente) =>{
-            return previo + siguiente
-    }
     
     let precioFinalTotal = preciosFinalesCadaProducto.length?preciosFinalesCadaProducto.reduce(reducer):0
 
     let buyerDatos = {}
-
+    //funcion para agregar todos los valores de los input al objeto buyerDatos
     const buyer = (nombre, apellido, mail, telefono, provincia, ciudad, direccionCalle, direccionAltura) =>{
         buyerDatos.nombre = `${nombre} ${apellido}`
         buyerDatos.mail = mail
@@ -71,13 +68,12 @@ const CartContext = ({children}) => {
             cadaUno.productPrice * cadaUno.qty
         )
         orden.ordenTotalPrice = preciosFinales.reduce(reducer)
-        
+
         //le muestro al cliente el id de la compra
         const db = getFirestore()
         const ordenesCollection = db.collection('ordenes')
         ordenesCollection.add(orden)
-            .then(res => {console.log(res.id); alert('Compra exitosa. Su id de compra es: ' + res.id)
-            })
+            .then(res => compraExitosa (res.id))
             .catch(err => console.log(err))
 
         //actualiza todos los items que estan en itemsEnCarrito. La uso más abajo
@@ -97,7 +93,6 @@ const CartContext = ({children}) => {
                 })
 
                 batch.commit()
-                    .then(res => console.log('batch: ' + res))
             })
     }
 

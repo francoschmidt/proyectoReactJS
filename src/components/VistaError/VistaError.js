@@ -12,7 +12,7 @@ const VistaError = () => {
             <h2 className='textos font-monospace'>Página no encontrada</h2>
             <h2 className='textos font-monospace'>La página que ud. está buscando no está disponible</h2>
             <Link to='/'><button type="button" className="btn btn-primary fs-5 px-4 textos" id='botonVolver'>Volver al menú principal</button></Link>
-            <img className='mt-4' id='imgDecepcion' src={imgDecepcion}/>
+            <img className='mt-4' id='imgDecepcion' alt='' src={imgDecepcion}/>
         </div>
     )
 }

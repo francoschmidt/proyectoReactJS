@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react'
 import { CartContextProvider } from '../Contexts/CartContext'
 import imgCarritoVacio from '../../images/carritoVacio.png'
 import { Link } from 'react-router-dom'
-import { reducer } from '../helpers/Alerts'
+import { reducer } from '../helpers/helpers'
+import './Cart.css'
 
 const Cart = () => {
 
@@ -53,7 +54,7 @@ const Cart = () => {
             ?
                 <>
                 <div className='m-5'>
-                    <div className='container' style={{display:'flex', flexDirection:'row', textAlign:'center'}}>
+                    <div id='containerTitulos' className='container'>
                         <div className="col-2"></div>
                         <h3 className="col-2">Celular</h3>
                         <h3 className="col-2">Precio</h3>
@@ -67,8 +68,8 @@ const Cart = () => {
                     {itemsEnCarrito.map(cadaUno =>
                     <div key={cadaUno.id} className='container mb-3'>
                         <hr />
-                        <div style={{display:'flex', flexDirection:'row', alignItems:'center', textAlign:'center'}} >
-                            <div className='col-2'> <img src={cadaUno.imgURL} alt="img" style={{width:'50%'}} /> </div>
+                        <div id='containerDatos' >
+                            <div className='col-2'> <img src={cadaUno.imgURL} alt="img" id='imgCelular' /> </div>
                             <div className='col-2'> {cadaUno.name} </div>
                             <div className='col-2'> ${cadaUno.productPrice} </div>
                             <div className='col-2'> {cadaUno.qty}u. </div>
@@ -77,11 +78,11 @@ const Cart = () => {
                         </div>
                     </div>
                     )}
-                    <p style={{textAlign:'center'}}>Precio total final ${precioFinalTotal} </p>
+                    <p id='precioFinal'>Precio total final ${precioFinalTotal} </p>
                     </div>
                     :
                     null }
-                    <div style={{display:'flex', justifyContent:'space-evenly'}}>
+                    <div id='botones'>
                         <button className='btn btn-danger' onClick={() => borrarTodos()}>Borrar todo</button>
                         <Link to='/formulario'> <button className='btn btn-success'>Proceder al pago</button></Link>
                     </div>
@@ -90,7 +91,7 @@ const Cart = () => {
             :
             <div className='d-flex flex-column mt-5 mb-5 align-items-center'>
                 <h1 style={{fontFamily:'monospace'}}>Su carrito se encuentra vacío</h1>
-                <img alt='carritoVacio' style={{height:'375px', width:'425px', marginBottom:'40px'}} src={imgCarritoVacio}></img>
+                <img alt='carrito vacio' id='imgCarritoVacio' src={imgCarritoVacio}></img>
                 <p className='text-center fs-4'>Por favor agregue algún producto al carrito para realizar su compra</p>
             </div>
             }

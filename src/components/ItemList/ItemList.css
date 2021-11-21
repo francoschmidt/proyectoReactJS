@@ -2,5 +2,9 @@
     display:flex;
     justify-content:center;
     height:250px; 
-    align-items:center
+    align-items:center;
+    flex-direction: column;
+}
+#cargandoProductos{
+    font-family: serif;
 }

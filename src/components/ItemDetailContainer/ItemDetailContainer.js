@@ -20,9 +20,9 @@ const ItemDetailContainer = ({allCellph}) => {
             {/* si no hay producto filtrado muestro cargando producto. Si hay producto filtrado muestro el itemDetail*/}
             {!productoFiltrado
             ?
-            <div id='containerLoader' style={{display:'flex', flexDirection:'column'}} >
+            <div id='containerLoader' >
                 <Loader type={'Puff'} color={'aqua'} />
-                <h3 style={{fontFamily:'serif'}} >Cargando producto...</h3>
+                <h3 id='cargandoProducto'>Cargando producto...</h3>
             </div>
             :
             <ItemDetail productoFiltrado={productoFiltrado} />

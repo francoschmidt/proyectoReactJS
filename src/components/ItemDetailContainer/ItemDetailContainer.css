@@ -1,9 +1,14 @@
 #containerLoader{
     display:flex;
-    justify-content:center;
+    flex-direction: column;
+    justify-content: center;
     height:250px; 
-    align-items:center
+    align-items: center
 }
 #itemDetail{
     background-image: url('../../images/fondo.jpg');
+}
+#cargandoProducto{
+    font-family: serif;
+    color: white;
 }

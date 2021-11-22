@@ -8,3 +8,7 @@
 #cargandoProductos{
     font-family: serif;
 }
+#cardsInicio{
+    display: flex;
+    padding-bottom: 2%;
+}

@@ -1,7 +1,11 @@
 #bienvenido{
     text-align: center;
-    margin-top: 2%
+    padding-top: 2%
 }
 #cardContainer{
     width: 18em;
+}
+#itemListFondo{
+    background-image: url('../../images/fondo2.jpg');
+    padding: 3% 0 3%;
 }

@@ -22,9 +22,9 @@ const ItemListContainter = ({allCellph, setAllCellph}) => {
         <>
         {productoFilterMismoId.length
         ?
-            <div className='d-flex justify-content-center'> 
+            <div id='itemListFondo' className='d-flex justify-content-center'> 
             {productoFilterMismoId.map(cadaCelu =>
-                <div key={cadaCelu.id} className="card m-3" id='cardContainer'>
+                <div key={cadaCelu.id} className="card" id='cardContainer'>
                     <img src={cadaCelu.imgURL} alt="..."/>
                     <div className="card-body d-flex flex-column justify-content-end">
                         <h5 className="card-title">{cadaCelu.title}</h5>

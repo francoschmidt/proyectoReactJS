@@ -10,7 +10,7 @@ const ItemList = ({allCellph}) => {
         {
             allCellph.length
             ?
-            <div id='cacho' style={{display:'flex', marginBottom:'2%'}}>
+            <div id='cardsInicio'>
             {allCellph.map(cadaCelular =>
                 <div key={cadaCelular.id} className="card" style={{width:'18em'}}>
                     <img src={cadaCelular.imgURL} className="card-img-top" alt="..."/>

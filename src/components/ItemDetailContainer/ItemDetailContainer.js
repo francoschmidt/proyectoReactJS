@@ -16,7 +16,7 @@ const ItemDetailContainer = ({allCellph}) => {
     }
 
     return (
-        <div>
+        <div id='itemDetail'>
             {/* si no hay producto filtrado muestro cargando producto. Si hay producto filtrado muestro el itemDetail*/}
             {!productoFiltrado
             ?

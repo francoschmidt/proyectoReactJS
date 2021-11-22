@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 import { getFirestore } from '../services/firebase'
 import { reducer } from '../helpers/helpers'
 import { compraExitosa } from '../helpers/helpers'

@@ -31,9 +31,7 @@ const Cart = () => {
             //aca obtengo el elemento del array itemsEnCarrito que es igual al que estoy clickenado la X y saco su index del array de itemsEnElCarrito
             let elementoEnArray = itemsEnCarrito.find(itemsEnCarrito => itemsEnCarrito.id === cadaProducto.id)
             let elementoEnArrayIndex = itemsEnCarrito.indexOf(elementoEnArray)
-            console.log(elementoEnArrayIndex)
-            itemsEnCarrito.splice(elementoEnArrayIndex,elementoEnArrayIndex)
-            console.log(itemsEnCarrito)
+            itemsEnCarrito.splice(elementoEnArrayIndex, 1)
 	    }
     }
     

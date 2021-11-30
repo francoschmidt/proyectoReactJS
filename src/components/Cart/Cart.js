@@ -91,6 +91,7 @@ const Cart = () => {
                 <h1 style={{fontFamily:'monospace'}}>Su carrito se encuentra vacío</h1>
                 <img alt='carrito vacio' id='imgCarritoVacio' src={imgCarritoVacio}></img>
                 <p className='text-center fs-4'>Por favor agregue algún producto al carrito para realizar su compra</p>
+                <Link to='/'><button className='btn btn-primary px-3 mt-3' id='irAComprar'>Ir a comprar</button></Link>
             </div>
             }
         </>

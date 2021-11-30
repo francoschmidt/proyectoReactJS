@@ -8,15 +8,6 @@ export const alertTerminos = () =>{
     })
 }
 
-//alert no hay items en el carrito
-export const alertNoItemsEnCarrito = () =>{
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'No hay items en el carrito!',
-    })
-}
-
 //alert compra exitosa
 export const compraExitosa = (id) =>{
     Swal.fire({

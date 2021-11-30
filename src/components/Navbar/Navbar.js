@@ -3,7 +3,6 @@ import CartWidget from '../CartWidget/CartWidget'
 import '../Navbar/Navbar.css'
 import { Link } from 'react-router-dom'
 import { CartContextProvider } from '../Contexts/CartContext'
-import { alertNoItemsEnCarrito } from '../helpers/helpers'
 
 const Navbar = ({nombreDelSitio}) => {
     
@@ -29,21 +28,11 @@ const Navbar = ({nombreDelSitio}) => {
                             <Link to='/marca/samsung' className='navbarLinks'><h5 className="nav-link active fs-5 mx-3">Samsung</h5></Link>
                         </div>
                     </div>
-                    {/* CLICK EN CARRITO: si hay productos en el carrito los muestro sino muestro el alert  */}
-                    {itemsEnCarrito.length
-                    ?
                     <Link to='/cart' className='navbarLinks'>
                         <div id='contenedorCartWidget'>
                             <CartWidget itemsEnCarrito={itemsEnCarrito} />
                         </div>
                     </Link>
-                    :
-                    <div>
-                        <div onClick={()=>alertNoItemsEnCarrito()} className='navbarLinks'>
-                            <CartWidget itemsEnCarrito={itemsEnCarrito} />
-                        </div>
-                    </div>
-                    }
                 </div>
             </nav>
         </header>
